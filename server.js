@@ -1,7 +1,10 @@
 // server.js
 // where your node app starts
 
-// init project
+// load environment variables :
+require('dotenv').config();
+
+// init project :
 var express = require('express');
 var app = express();
 
@@ -18,15 +21,55 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-
-// your first API endpoint... 
+// get method :
 app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get("/api/timestamp/:d", function (req, res) {
+  res.json(parseDate(req.params.d));
+});
 
 
-// listen for requests :)
+// listen for requests :
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+// api functions :
+function parseDate(date){
+  if(/^\d*$|^-\d*$/.test(date)){
+    let d = new Date();
+    d.setTime(date);
+    return {unix: Number.parseInt(date), utc: formatDate(d)};
+  }
+  else if(/^\d{1,2}}-\d{1,2}}-\d{1,2}}:\d{1,2}}:\d{1,2}}$/.test(date)){
+    //TODO
+  }
+  else if(/^\d{1,2}}-\d{1,2}}-\d{1,2}}:\d{1,2}}$/.test(date)){
+    //TODO
+  }
+  else if(/^\d{1,2}}-\d{1,2}}$/.test(date)){
+    //TODO
+  }
+  else if(/^\d{1,2}}-\d{1,2}}-\d{1,2}}$/.test(date)){
+    //TODO
+  }
+  else if(/^\d{1,2}}-\d{1,2}}-\d{1,2}}-\d{1,2}}:\d{1,2}}/.test(date)){
+      //TODO
+  }
+  else if(/^\d{1,2}}-\d{1,2}}-\d{1,2}}-\d{1,2}}:\d{1,2}}:\d{1,2}}/.test(date)){
+      //TODO
+  }
+  else return {error: 'Invalid Date!'};
+}
+
+function formatDate(date){
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = ['Jan','Feb','Mer','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let day = date.getUTCDate() > 9 ? date.getUTCDate() : '0' + date.getUTCDate();
+  let hour = date.getUTCHours() > 9 ? date.getUTCHours() : '0' + date.getUTCHours();
+  let minute = date.getUTCMinutes() > 9 ? date.getUTCMinutes() : '0' + date.getUTCMinutes();
+  let second = date.getUTCSeconds() > 9 ? date.getUTCSeconds() : '0' + date.getUTCSeconds();
+  return `${days[date.getUTCDay()]}, ${day} ${months[date.getUTCMonth()]} ${date.getUTCFullYear()} ${hour}:${minute}:${second} GMT`
+}
