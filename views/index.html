@@ -12,7 +12,7 @@
     <hr />
     <div class="container">
       <h3>Example Usage:</h3>
-      <ul>
+      <ul id="examples">
         <li><a href="api/timestamp/2015-12-25">[project url]/api/timestamp/2015-12-25</a></li>
         <li><a href="api/timestamp/1451001600000">[project url]/api/timestamp/1451001600000</a></li>
       </ul>
@@ -21,10 +21,47 @@
       <p>
         <code>{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}</code>
       </p>
+
+      <h3>Syntax:</h3>
+      <p>
+        <code>
+          [api's-url]/MONTH-DAY-YEAR
+        </code>
+        <br />
+        or:
+        <br />
+        <code>
+          [api's-url]/YEAR-MONTH-DAY
+        </code>
+        <br />
+        or:
+        <br />
+        <code>
+          [api's-url]/MONTH-DAY-YEAR-HOUR:MIN:SEC
+        </code>
+        <br />
+        or:
+        <br />
+        <code>
+          [api's-url]/MONTH-DAY-YEAR-HOUR:MIN
+        </code>
+      </p>
+
+      <h3>Notes:</h3>
+      <p>
+        <ul>
+          <li>Should work for dates between year 1000 and 2100. Other dates were not tested.</li>
+          <li>The validation will forbid dates like '2015-12-32' but dates like '2015-2-31' may pass and give unexpected result.</li>
+          <li>Have fun!</li>
+        </ul>
+      </p>
     </div>
     <div class="footer">
       <p>
-        By <a href="https://www.freecodecamp.org/">freeCodeCamp.org</a>
+        Made for <a href="https://www.freecodecamp.org/">freeCodeCamp.org</a> by <a href="https://www.baramit.com">baramit.com</a>
+      </p>
+      <p>
+        <a href="https://github.com/bosh44">Github</a>
       </p>
     </div>
   </body>

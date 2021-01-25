@@ -29,11 +29,12 @@ hr {
 code {
   font-family: monospace;
   padding: 2px;
-  color: black;
-  background-color: #fff;
+  color: whitesmoke;
+  background-color: rgb(88, 87, 87);
+  width: 50%;
 }
 
-ul {
+#examples {
 	list-style-type: none;
 }
 
